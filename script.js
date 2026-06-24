@@ -1,5 +1,4 @@
-let humanScore = 0;
-let computerScore = 0;
+
 
 const getComputerChoice = () => {
     const randomNumber = getRandomNumber(3);
@@ -24,19 +23,32 @@ const getHumanChoice = () => {
     return input;
 }
 
-const playRound = (humanChoice, computerChoice) => {
-    console.log(computerChoice);
-    const choices = ["rock", "paper", "scissors", "rock", "paper"];
-    const computerIndex = choices.indexOf(computerChoice);
-    if (humanChoice === computerChoice) {
-        console.log("Draw");
-    } else if (choices[computerIndex+2] === humanChoice) {
-        console.log("Computer wins!");
-        computerScore++;
+
+
+const playGame = () => {
+    let humanScore = 0;
+    let computerScore = 0;
+    const playRound = (humanChoice, computerChoice) => {
+        const choices = ["rock", "paper", "scissors", "rock", "paper"];
+        const computerIndex = choices.indexOf(computerChoice);
+        if (humanChoice === computerChoice) {
+            return "Draw!";
+        } else if (choices[computerIndex + 2] === humanChoice) {
+            computerScore++;
+            return `${computerChoice} beats ${humanChoice}, Computer wins!`;
+        } else {
+            humanScore++;
+            return `${humanChoice} beats ${computerChoice}, Human wins!`
+        }
+    }
+    while (humanScore < 5 && computerScore < 5) {
+        console.log(playRound(getHumanChoice(), getComputerChoice()));
+    }
+    if (humanScore === 5){
+        console.log("Human won!");
     } else {
-        console.log("Human wins!");
-        humanScore++;
+        console.log("Computer won!");
     }
 }
 
-playRound(getHumanChoice(), getComputerChoice());
+playGame();
