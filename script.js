@@ -1,3 +1,6 @@
+let humanScore = 0;
+let computerScore = 0;
+
 const getComputerChoice = () => {
     const randomNumber = getRandomNumber(2);
     if (randomNumber === 0) {
@@ -20,5 +23,3 @@ const getHumanChoice = () => {
     } while (input !== "rock" && input !== "scissors" && input !== "paper");
     return input;
 }
-
-console.log(getHumanChoice());
